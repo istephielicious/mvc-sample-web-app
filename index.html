@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- /CSS files. -->
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" href="node_modules/jquery-ui-dist/jquery-ui.css" />
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="node_modules/primeui/primeui-all.css" />
+    
+
+    <!-- /JS files. -->
+    <script type="application/javascript" src="node_modules/jquery/dist/jquery.js"></script>
+    <script type="application/javascript" src="node_modules/jquery-ui-dist/jquery-ui.js"></script>    
+    <script type="application/javascript" src="node_modules/bootstrap/dist/js/bootstrap.js"></script>   
+    <script type="application/javascript" src="node_modules/primeui/primeui-all.js"></script> 
+    <script src="main.js"></script>
+</head>
+<body>
+
+       
+    <div class="container">
+        <div class="jumbotron">
+                <div class="row">
+                    <form>
+                        <div class="form-group">
+                            <label for="lastname">Last Name</label>
+                            <input type="lastname" class="form-control" id="lastname" placeholder="Enter Last name" name="lastname">
+                        </div>
+                        <div class="form-group">
+                            <label for="firstname">First Name</label>
+                            <input type="firstname" class="form-control" id="firstname" placeholder="Enter First name" name="firstname">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                        </div>
+                        <button type="button" class="btn btn-default btnSubmit">Submit</button>
+                        <button type="reset" class="btn btn-default">Reset</button>
+                        <button type="button" class="btn btn-default btnEdit" disabled="true">Update</button>
+                    </form>
+                </div> <!--/end row--> 
+                <br/>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <label for="search">Search</label>
+                    </div>
+                    <div class="col-sm-5">
+                        <input type="search" class="form-control" id="search" placeholder="Enter Employee to search and press Enter" name="search">
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="displayEmp">
+                        <!--/Display employees -->
+                    </div>
+                </div> <!-- /end row-->     
+        </div> <!-- /jumbotron end.-->
+    </div> <!-- /container end-->
+
+    <script src="Person.js"></script>
+    <script src="EventDispatcher.js"></script>
+    <script src="EmployeeModel.js"></script>
+    <script src="EmployeeView.js"></script>
+    <script src="EmployeeController.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "web-mvc-sample",
+  "version": "1.0.0",
+  "description": "mvc training",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "istephielicious@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.1.1",
+    "jquery": "^3.3.1",
+    "jquery-ui-dist": "^1.12.1",
+    "primeui": "^4.1.15"
+  }
+}
