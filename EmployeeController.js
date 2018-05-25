@@ -74,7 +74,7 @@ EmployeeController.prototype = {
             alert("Please supply all empty fields");
     },
     searchEmployee: function(data) {
-        this.model.searchEmployee(data);
+        this.model.searchEmployee(data.toLowerCase());
     },
     validateInputs: function() {
         var fname, lname, email, result=false;
