@@ -23,7 +23,6 @@ EmployeeModel.prototype = {
     addEmployee: function (personalInfo) {
         console.log("Model:addEmployee()");
         personalInfo.empIndex = this.Employees.length;
-        console.log(this.Employees.length);
         this.Employees.push(personalInfo);
 
         //Notify event.
@@ -69,6 +68,7 @@ EmployeeModel.prototype = {
               lName.toLowerCase().indexOf(searchText) >= 0 ||
               email.toLowerCase().indexOf(searchText) >= 0) {
                 var p = new Person(fName, lName, email);
+                p.setEmpIndex(this.Employees[itr].empIndex);
                 srchEmployee.push(p);
             }   
         }

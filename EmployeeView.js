@@ -40,12 +40,18 @@ function EmployeeView(model, elements) {
         datasource: _this.model.getEmployees(),
         rowSelect: 
         function(event, personalInfo) {
-            _this.model.setEmpSelectedIndex(personalInfo.empIndex)
+            if(personalInfo.empIndex == undefined) {
+                _this.model.setEmpSelectedIndex(-1);
+            }
+            else{
+                _this.model.setEmpSelectedIndex(personalInfo.empIndex);
 
-            _this.elements.btnEmpEdit.attr("disabled", false);
-            _this.elements.btnAddEmp.attr("disabled", true); 
+                _this.elements.btnEmpEdit.attr("disabled", false);
+                _this.elements.btnAddEmp.attr("disabled", true); 
 
-            _this.empModified.notify({event, personalInfo});
+                _this.empModified.notify({event, personalInfo});
+            } 
+            
         },
         rowUnselect:
         function(event, personalInfo) {
@@ -87,6 +93,7 @@ EmployeeView.prototype = {
         console.log("View:displaySearchResult()");
 
         var table = this.elements.empTbl;
+        this.model.setEmpSelectedIndex(-1);
         table.puidatatable('option','datasource', empSrchResult);
         table.puidatatable('reload');
     },
