@@ -21,11 +21,11 @@ $(window).on('load', function() {
                     'empTbl': $('#displayEmp'),
                     'btnAddEmp': $('.btnSubmit'),
                     'btnEmpEdit': $('.btnEdit'),
+                    'btnReset': $('.btnReset'),
                     'txtSearch': $('#search'),
                     'txtFname': $('#firstname'),
                     'txtLname': $('#lastname'),
                     'txtEmail': $('#email')}),
         controller = new EmployeeController(model, view);
-    // view.elements.btnAddEmp.click(function() {console.log("hi")});
     view.display();
 });

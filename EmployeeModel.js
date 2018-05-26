@@ -50,11 +50,10 @@ EmployeeModel.prototype = {
         this.Employees[index].fName = personalInfo.fName;
         this.Employees[index].lName = personalInfo.lName;
         this.Employees[index].email = personalInfo.email;
+        this.setEmpSelectedIndex(-1);
 
         //Notify event.
-        this.empEdited.notify({empIndex: index, empInfo: personalInfo});
-        return true;
-
+        this.empEdited.notify({empIndex: index, result: true});
     },
 
     searchEmployee: function (searchText) {
@@ -72,6 +71,7 @@ EmployeeModel.prototype = {
                 srchEmployee.push(p);
             }   
         }
+        this.setEmpSelectedIndex(-1);
         this.empSearched.notify(srchEmployee);
     }
 }

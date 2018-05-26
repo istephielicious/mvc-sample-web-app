@@ -10,88 +10,37 @@ function EmployeeController(model, view) {
 
     //Attach view listeners.
     this.view.empModified.attach(function (sender, args) {
-        switch(args.event.type){
-            case 'puidatatablerowselect':
-                console.log(args);
-                _this.displayEmpSelected(args.personalInfo);
-            break;
-            case 'puidatatablerowunselect':
-            _this.removeEmpUnselected();
-        }        
+        _this.setCurrentIndex(args.currIndx);
     }); 
-    this.view.addEmpButtonClicked.attach(function () {
-        _this.addEmployee();
+    this.view.addEmpButtonClicked.attach(function (sender, args) {
+        _this.addEmployee(args.newEmp);
     });
-    this.view.updateEmpButtonClicked.attach(function () {
-        _this.updateEmployee();
+    this.view.updateEmpButtonClicked.attach(function (sender, args) {
+        _this.updateEmployee(args.updatedEmp);
     });
-    this.view.searchEmpKeypressed.attach(function(sender, args) {
-        console.log("here ",args.value);
+    this.view.searchEmpKeypressed.attach(function (sender, args) {
         _this.searchEmployee(args.value);
+    });
+    this.view.resetButtonClicked.attach(function (sender, args) {
+        _this.setCurrentIndex(args.index);
     });
 
 }
 
 EmployeeController.prototype = {
-    addEmployee: function () {
+    addEmployee: function (newEmp) {
         console.log("Controller:addEmployee()");
-        var fname, lname, email;
-        fname = this.view.elements.txtFname.val();
-        lname = this.view.elements.txtLname.val();
-        email = this.view.elements.txtEmail.val();
-        var result = this.validateInputs();
-        if(result.isValid) {
-            this.model.addEmployee(result.data);
-        }
-        else {
-            alert("Please supply all empty fields");
-        }
+        this.model.addEmployee(newEmp);
     },
-    displayEmpSelected: function(personalInfo) {
-        console.log("Controller:displayEmpSelected()");
-        //Display Selected Employee info.
-        this.view.elements.btnAddEmp.attr("disabled", true);
-        this.view.elements.txtFname.val(personalInfo.fName);
-        this.view.elements.txtLname.val(personalInfo.lName);
-        this.view.elements.txtEmail.val(personalInfo.email);
+    setCurrentIndex: function (index) {
+        console.log("Controller:setCurrentIndex()");
+        this.model.setEmpSelectedIndex(index);
     },
-    removeEmpUnselected: function() {
-        console.log("Controller:removeEmpUnselected()");
-        this.resetFields();     
-    },
-    updateEmployee: function() {
+    updateEmployee: function(updatedEmp) {
         console.log("Controller:updateEmployee()");
-        //Get Updated Employee info.
-        var result = this.validateInputs();
-        if(result.isValid)
-            var isUpdated =this.model.editEmployee(result.data);
-            if(isUpdated) {
-                alert("Employee is updated");
-                this.view.elements.btnAddEmp.attr("disabled", false);
-                this.resetFields();
-            }
-        else
-            alert("Please supply all empty fields");
+        this.model.editEmployee(updatedEmp);
     },
     searchEmployee: function(data) {
         this.model.searchEmployee(data.toLowerCase());
     },
-    validateInputs: function() {
-        var fname, lname, email, result=false;
-        fname = this.view.elements.txtFname.val();
-        lname = this.view.elements.txtLname.val();
-        email = this.view.elements.txtEmail.val();
-        var p = {};
-        if(fname != "" && lname != "" && email != "") {
-            p = new Person(fname, lname, email);   
-            result = true;
-        }
-        return {isValid: result, data:p};
-    },
-    resetFields: function () {
-        this.view.elements.txtFname.val("");
-        this.view.elements.txtLname.val("");
-        this.view.elements.txtEmail.val("");
-    }
-
 }
